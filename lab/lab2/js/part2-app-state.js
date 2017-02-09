@@ -18,13 +18,13 @@
        This is accomplishing two goals. L.marker([50.5, 30.5]) makes a marker
        and .addTo(map) adds that marker to the map. This task differs in that,
        you are being asked to create separate functions: one to create markers
-       and one to add them to the map.
+       and one to add them to the map.***
 
   (IMPORTANT!)
   NOTE 2: These functions are being called for you. Look to the bottom of this file
        to see where and how the functions you are defining will be used. Remember
        that function calls (e.g. func();) which are equal to a value (i.e. you
-       can set a var to it: var result = func();) must use the 'return' keyword.
+       can set a var to it: var result = func();) ****must use the 'return' keyword.***
 
        var justOne = function() {
          return 1;
@@ -33,11 +33,22 @@
 ===================== */
 
 // We set this to HTTP to prevent 'CORS' issues
-var downloadData = $.ajax("http://");
-var parseData = function() {};
-var makeMarkers = function() {};
-var plotMarkers = function() {};
+var downloadData = $.ajax("https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-solar-installations.json");
 
+var parseData = function(dataSolar) {return JSON.parse(dataSolar);};
+
+var makeMarkers = function(parsed){
+  var temp = _.map(parsed, function(obj){ //****NEED TO CREATE this "temp" to store the marker!!
+    return L.marker([obj.LAT, obj.LONG_]); // each L.marker is an event
+  });
+  return temp;
+};
+
+var plotMarkers = function(markers) {
+  _.each(markers, function(mk){
+    mk.addTo(map);
+  });
+};
 
 /* =====================
   Define the function removeData so that it clears the markers you've written
@@ -52,7 +63,11 @@ var plotMarkers = function() {};
   user's input.
 ===================== */
 
-var removeMarkers = function() {};
+var removeMarkers = function(markers) {
+  _.each(markers, function(mk){
+    map.removeLayer(mk);
+  });
+};
 
 /* =====================
   Optional, stretch goal
@@ -68,7 +83,7 @@ var removeMarkers = function() {};
 
 var map = L.map('map', {
   center: [39.9522, -75.1639],
-  zoom: 14
+  zoom: 12
 });
 var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/toner-lite/{z}/{x}/{y}.{ext}', {
   attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
@@ -81,6 +96,8 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
 /* =====================
  CODE EXECUTED HERE!
 ===================== */
+
+//var markers;
 
 downloadData.done(function(data) {
   var parsed = parseData(data);

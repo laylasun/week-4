@@ -1,6 +1,102 @@
 /* =================
 Add more styles here!
 ================= */
+*{
+  border: 0px dashed blue;
+}
+
+#filtersTitle{
+  position: relative;
+  float: left;
+  font-size: 22px;
+  color: black;
+  font-weight: bold;
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+#hide-filters-button{
+  position: relative;
+  float: right;
+  border: 1.5px solid #c0c0c0;
+  background-color: #f1f1f1;
+  height: 22px;
+  width: 85px;
+  text-align: center;
+  bottom: auto;
+  font-size: 13px;
+  color: black;
+}
+
+#head1{
+  position: relative;
+  float: left;
+  font-size: 18px;
+  color: black;
+}
+
+#string-input{
+  position: relative;
+  float: left;
+  border: 1px solid #bdbdbd;
+  background-color: white;
+  height: 22px;
+  width: 295px;
+}
+
+#selectByGrade{
+  position: relative;
+  float: left;
+  border: 1px solid #bdbdbd;
+  border-radius: 3px;
+  height: 22px;
+  width: 180px;
+  font-size:13px;
+}
+
+hr {
+  border: 0;
+  clear:both;
+  width: 295px;
+  background-color:#bdbdbd;
+  height: 2px;
+}
+
+#schoolTitle{
+    clear: both;
+    position: relative;
+    float: left;
+    font-size: 22px;
+    color: black;
+    font-weight: bold;
+    font-family: sans-serif;
+    margin-top: 12px;
+}
+
+#schoolInfo {
+  position: relative;
+  float: left;
+  clear: both;
+  border: 1px solid #eeeeee;
+  background-color: #eeeeee;
+  height: auto;
+  width: 295px;
+}
+
+#schoolInfo p span {
+  font-size: 15px;
+  color: #8e8e8e;
+}
+
+#schoolAddress{
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 13px;
+}
+
+#blockMargin{
+  clear: both;
+}
 
 body {
     padding: 0;

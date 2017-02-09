@@ -26,7 +26,7 @@
 
     Take a look at the image screen-assignment.png. Add HTML inside of the
     element <div class="sidebar"></div> and add CSS inside the file
-    css/style.css to recreate this content in the browser. You do not need to
+    css/style(main?).css to recreate this content in the browser. You do not need to
     create the list of schools dynamically using the data—just hardcode three schools
     (in a future assignment, we will generate the list with the same data that we use
     to generate markers on our map!).
@@ -54,7 +54,44 @@
       <!-- =====================
       Add HTML!
       ====================== -->
+        <div id="filtersTitle">Filters</div>
+        <button id="hide-filters-button">Hide Filters</button>
+        <br><br>
 
+        <div id="head1"><br>By Name<br><br>
+            <input id="string-input" type="text" size=25>
+        </div>
+
+        <div id="head1"><br>By Grade<br><br>
+          <select id="selectByGrade">
+            <option value = "All Grades">All Grades</option>
+            <option>Kindergarten</option>
+            <option>Elementary School</option>
+            <option>Elem/Middle</option>
+            <option>Middle School</option>
+            <option>Middle/High</option>
+            <option>High School</option>
+          </select><br><br>
+        </div>
+
+        <div><hr></div>
+
+        <div id="schoolTitle">Schools<br><br></div>
+        <div id = "schoolInfo">
+          <p>Henry, Charles W. <br> <span> Elem/Middle</span></p>
+          <p id="schoolAddress">601 Carpenter La. <br> 19119 - 3405</p>
+        </div>
+        <div id="blockMargin"><br></div>
+        <div id = "schoolInfo">
+          <p>Universal Creighton Charter School<br> <span> Elem/Middle</span></p>
+          <p id="schoolAddress">5401Tabor Ave <br>19120 - 3614</p>
+        </div>
+        <div id="blockMargin"><br></div>
+        <div id = "schoolInfo">
+          <p>Marshall, John <br> <span> Elementary School</span></p>
+          <p id="schoolAddress">4500 Griscom St. <br>19124 - 3653</p>
+        </div>
+        
     </div>
     <!-- Map -->
     <div id="map" class="map"></div>

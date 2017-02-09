@@ -19,26 +19,29 @@
   This recipe, can be used by underscore's _.filter. It will return only words with
    >=5 characters.
 ===================== */
-var isLengthOfFiveOrMore = function(str) {};
+var isLengthOfFiveOrMore = function(str) {
+  return str.length >= 5;
+};
 
 console.log("isLengthOfFiveOrMore success:",
   _.isEqual(_.filter(['this', 'is','a', 'test', 'testing'], isLengthOfFiveOrMore), ['testing']));
-
 
 /* =====================
   Now write a 'recipe' to console.log the double of a number (i.e. n * 2). Use the
   function you write along with underscore's _.each to log the double of every
   number in the provided array.
 ===================== */
-var logDouble = function(num) {};
+var logDouble = function(num) {
+  return num*2;
+};
 var theArray = [1, 5, 20, 100];
-
+console.log(_.map(theArray, logDouble)); //USE _.MAP
 
 /* =====================
   Given this already defined function, define fizzbuzzArray so that, when mapped
   over, it will equal ['fizz', 'buzz', 'fizzbuzz'];
 ===================== */
-var fizzbuzzArray = [];
+var fizzbuzzArray = [3,5,15];
 var fizzbuzzFunc = function(num) {
   var str = '';
   if (num % 3 === 0) { str = 'fizz'; }
@@ -48,6 +51,7 @@ var fizzbuzzFunc = function(num) {
 };
 
 console.log("fizzbuzz success:",
+  _.map(fizzbuzzArray, fizzbuzzFunc),
   _.isEqual(_.map(fizzbuzzArray, fizzbuzzFunc), ['fizz', 'buzz', 'fizzbuzz']));
 
 
@@ -94,7 +98,6 @@ var phillySolarInstallationDataUrl = "https://raw.githubusercontent.com/CPLN692-
 var phillyCrimeDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-crime-snippet.json";
 var phillyBikeCrashesDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-bike-crashes-snippet.json";
 
-
 /* =====================
   Data you grab through ajax is just text. You'll need to parse it as javascript
   objects to really work with it. Use the function `JSON.parse` on the string you
@@ -104,12 +107,10 @@ var phillyBikeCrashesDataUrl = "https://raw.githubusercontent.com/CPLN692-MUSA61
   that this step is completed before moving on!
 ===================== */
 
-
 /* =====================
   Now that you've properly parsed your data, use _.each to plot the
   dataset you've pulled down.
 ===================== */
-
 
 /* =====================
  Leaflet setup - feel free to ignore this
@@ -126,3 +127,14 @@ var Stamen_TonerLite = L.tileLayer('http://stamen-tiles-{s}.a.ssl.fastly.net/ton
   maxZoom: 20,
   ext: 'png'
 }).addTo(map);
+
+var downloadSolarData = $.ajax("https://raw.githubusercontent.com/CPLN692-MUSA611/datasets/master/json/philadelphia-solar-installations.json")
+.done(function(ajaxResponseValue){
+  var solarData = JSON.parse(ajaxResponseValue);
+  console.log(solarData.length);
+  _.map(solarData, function(obj){
+    L.marker([obj.LAT,obj.LONG_])
+    .bindPopup(obj.NAME)
+    .addTo(map);
+  });
+});
